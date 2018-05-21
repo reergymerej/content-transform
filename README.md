@@ -14,17 +14,15 @@ transform3(content) => html with utility classes
 ## Usage
 
 ```sh
-# read source
-./read_content.py content/utility-css.txt
+# transform to json, print
+./transform.py json content.txt
 
-# read source, print to stdout
-./transform_json.py content.txt
+# transform to json, pretty print
+./transform.py json content.txt | python3 -m json.tool
 
-# read source, print to stdout, and make it pretty
-./transform_json.py content.txt | python3 -m json.tool
+# transform to json, save to content.json
+./transform.py json content.txt > content.json
 
-# read source, print to foo.json
-./transform_json.py content.txt > foo.json
-# or
-./transform_json.py content.txt foo.json
+# transform to html
+./transform.py html content.txt
 ```
