@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import json
-import re
+import parser
 
 # read in content
 # This will be the same across content types.  I don't care where the content is
@@ -13,35 +13,14 @@ with open('content-separation.txt') as content_file:
 
 # understand parts
 # This part will vary greatly based on the content.
-parsed_content = {}
-
 meta = {}
+meta['title'] = parser.get_meta_value(content, 'title')
+meta['author'] = parser.get_meta_value(content, 'author')
+meta['date'] = parser.get_meta_value(content, 'date')
 
-def get_meta_value(content, meta_prop):
-    pattern = f'^{meta_prop}:\s+([^\s].+)'
-    match = re.search(pattern, content, re.MULTILINE)
-    if match:
-        return match.group(1)
+parsed_content = {}
+parsed_content['without_signature'] = parser.get_content_without_signature(content)
 
-meta['title'] = get_meta_value(content, 'title')
-meta['author'] = get_meta_value(content, 'author')
-meta['date'] = get_meta_value(content, 'date')
-
-
-def has_pgp_signature(content):
-    return bool(re.search('^-----BEGIN PGP SIGNED MESSAGE-----', content))
-
-def get_content_without_signature(content):
-    is_signed_content = has_pgp_signature(content)
-    if is_signed_content:
-        pattern = '-----BEGIN PGP SIGNED MESSAGE-----\nHash:[^\n]+\n(.*)-----BEGIN PGP SIGNATURE-----'
-        match = re.search(pattern, content, flags=re.MULTILINE|re.DOTALL)
-        if match:
-            return match.group(1)
-    else:
-        return content
-
-parsed_content['without_signature'] = get_content_without_signature(content)
 
 
 # spit out result
