@@ -20,6 +20,9 @@ transform3(content) => html with utility classes
 # read source, print to stdout
 ./transform_json.py content.txt
 
+# read source, print to stdout, and make it pretty
+./transform_json.py content.txt | python3 -m json.tool
+
 # read source, print to foo.json
 ./transform_json.py content.txt > foo.json
 # or
