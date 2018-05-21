@@ -1,14 +1,13 @@
 #!/usr/bin/env python3
+import sys
 import json
 import parser
+import read_content
 
-# read in content
-# This will be the same across content types.  I don't care where the content is
-# stored; db, file, stream.  That's a job for another part of the system.  At
-# this point, we've got the content loaded up ready to send in here.
-with open('content-separation.txt') as content_file:
-    content = content_file.read()
-# TODO - Move reading of file out of here.
+# TODO - It is not our concern how the content is read.
+# Purely for convenience, we're reading it in here.  This should probably be
+# removed as it's not part of our objective.
+content = read_content.read(sys.argv[1])
 
 
 # understand parts
@@ -32,6 +31,10 @@ result = json.dumps({
     })
 
 
-# TODO - Move writing of file out of here.
-with open('content-separation.json', 'w') as transformed_file:
-    transformed_file.write(result)
+# This isn't really a concern for this, but it's another convenience.
+if len(sys.argv) > 2:
+    output_file_path = sys.argv[2]
+    with open(output_file_path, 'w') as transformed_file:
+        transformed_file.write(result)
+else:
+    sys.stdout.write(result)

@@ -1,0 +1,86 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+- ---
+date: Sun May 20 14:15:07 EDT 2018
+title: Utility-Based CSS
+author: Jeremy Greer
+- ---
+
+
+I'm noodling over the problem.  It seems like it's a good idea in as much as you
+can be very expressive with the styles and insulate elements from unexpected CSS
+changes.
+
+But what about this site?
+
+I'm just starting this and I don't want to lock into a specific style.  The
+threat of that prevents me from adding content.  The actual article, this bit
+you're reading, should persist.  It's the content, not the window dressing.
+
+Maybe there's another level.
+
+Presentation (CSS)
+  Structure (HTML)
+    Content (text)
+
+- ---
+
+So, let's ignore the content, assuming that is agnostic.  The problem really is
+just the separation of presentation and structure.
+
+If we use really sparse class names in html, we'll need very complex CSS.  This
+is the angle all the pro-utility CSS people take.  This leads to doing all the
+design application in CSS, probably with an intimate knowledge of the structure.
+When structure changes in html, lots of work needs to be done in the CSS.  In
+summary, the HTML can be reused, the CSS cannot.
+
+If we use utility CSS, there are no surprises when rendering html as you've
+explicitly said what you want to be applied in the markup.  This essentially is
+inline styles, but with the ability to use component class (think shareable
+mixins).  This keeps the CSS simple, if not redundant, and makes everything
+quite explicit.  The basic result is the CSS can be reused, but the HTML cannot.
+
+Boiling the topic down, the real question is, which will be reused?
+
+* HTML
+* CSS
+* neither
+
+- ---
+
+DRY
+use before reuse
+KISS
+separation of concerns
+premature optimization
+everything looks like a nail
+
+- ---
+
+If you step back, the issue is the cost of trying out something different.  If
+you buy in, how hard is it to undo?  Maybe this is another cool app idea.  What
+if there was a tool that allowed to you easily go back and forth?  Maybe a
+separate layer where you could apply a class name to an element either by name
+or by utility names?  Would that help?  It seems like being explicit is always
+preferred, but you'd need some sort of composition or currying or something to
+avoid the redundancy.
+
+The compulsion for the one true solution is persistent.  I guess the real
+thing we need to do is understand the options, identify the pros/cons of each,
+and weigh those against the goals/constraints of the project.
+
+- ---
+
+I'm so enlightened.  All my answers are, "It depends."
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEE+HWSq88ULKu5j9Q2m/bgXnuPW8IFAlsCJaoACgkQm/bgXnuP
+W8KqfQf/ejTt6Ofd+iri67llw2sZIjJKSNjwj14TOrgkbTG06XtpaXNw42AUXINm
+5g0hIE/MbBGTMZ7BQ0iSi/tVPilQ1u9STlm2WDzCNMghERrfKzRj9PTS16p7gTGU
+aMQMfAP+scP4JteFbf0JSRXK4INUZ8h18QuFDUKHU7D18c5viY0RW4FwxS0TjmS5
+vc88h/GLtVcLNNHn/wReI6PxppxxofRnF4OXHG0IVspppBWatCVEte07wJ/vLg2A
+lCRoDdPIy0+MlNGCQaozjqVUMnEsD1uMPbxzc20HQzW2mBl55NEeCibECQrltVtS
+qktTisTrPLH/axv3PgnmdtCAFBYTmQ==
+=vyOg
+-----END PGP SIGNATURE-----
