@@ -7,12 +7,17 @@ def transform(content):
     content_without_meta = parser.get_content_without_meta(content_without_signature)
     content_stripped = content_without_meta.strip()
     core_content = parser.unwrap(content_stripped)
-    blocks = parser.get_blocks(core_content)
-    mapped_blocks = ''
-    for block in blocks:
-        mapped_blocks += f'<div class="block">{block}</div>'
+    sections = parser.get_sections(core_content)
+    sections_html = ''
+    for section in sections:
+        paragraphs_html = ''
+        paragraphs = parser.get_paragraphs(section)
+        for paragraph in paragraphs:
+            paragraphs_html += f'<p>{paragraph}</p>'
 
-    transformed_content = f'<div class="content">{mapped_blocks}</div>\n'
+        sections_html += f'<section>{paragraphs_html}</section>'
+
+    transformed_content = f'<div class="content">{sections_html}</div>\n'
 
     return transformed_content
 

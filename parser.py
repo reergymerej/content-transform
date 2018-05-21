@@ -38,7 +38,7 @@ def unwrap(content):
     replacement = r'\1 \2'
     return re.sub(pattern, replacement, content, 0, flags=re.MULTILINE|re.DOTALL)
 
-def get_blocks(content):
+def get_sections(content):
     # for signed with dash
     pattern = r'\n- ---'
     result = re.split(pattern, content, 0, flags=re.MULTILINE|re.DOTALL)
@@ -46,5 +46,11 @@ def get_blocks(content):
     # if not signed
     pattern = r'\n---'
     result = re.split(pattern, '\n---'.join(result), 0, flags=re.MULTILINE|re.DOTALL)
+
+    return [x.strip() for x in result]
+
+def get_paragraphs(section):
+    pattern = r'\n\n'
+    result = re.split(pattern, section, 0, flags=re.MULTILINE|re.DOTALL)
 
     return [x.strip() for x in result]
