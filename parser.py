@@ -37,3 +37,14 @@ def unwrap(content):
     pattern = '([^\n])\n([^\n])'
     replacement = r'\1 \2'
     return re.sub(pattern, replacement, content, 0, flags=re.MULTILINE|re.DOTALL)
+
+def get_blocks(content):
+    # for signed with dash
+    pattern = r'\n- ---'
+    result = re.split(pattern, content, 0, flags=re.MULTILINE|re.DOTALL)
+
+    # if not signed
+    pattern = r'\n---'
+    result = re.split(pattern, '\n---'.join(result), 0, flags=re.MULTILINE|re.DOTALL)
+
+    return [x.strip() for x in result]
