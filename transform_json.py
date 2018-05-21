@@ -22,10 +22,9 @@ meta['date'] = parser.get_meta_value(content_without_signature, 'date')
 core_content = parser.get_content_without_meta(content_without_signature)
 
 
-
 # spit out result
 # This part would vary based on the system content is being processed for.
-result = json.dumps({
+transformed_content = json.dumps({
     'meta': meta,
     'content': core_content,
     })
@@ -35,6 +34,6 @@ result = json.dumps({
 if len(sys.argv) > 2:
     output_file_path = sys.argv[2]
     with open(output_file_path, 'w') as transformed_file:
-        transformed_file.write(result)
+        transformed_file.write(transformed_content)
 else:
-    sys.stdout.write(result)
+    sys.stdout.write(transformed_content)
