@@ -1,0 +1,93 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+title: Content Separation
+author: Jeremy Greer
+date: Sun May 20 19:23:25 EDT 2018
+
+- ---
+
+This idea that content should be separate from structure is really resonating
+with me.  Sure, it's only been a couple hours, but whatever.
+
+So instead of kicking back and wearing a smug grin because I know the best way
+to do something, it's time to give it a whirl.  Maybe it's a stupid idea and
+I'm too ignorant right now to understand why.
+
+- ---
+
+I've got to realize that little things like the --- above is sybolism.  That's
+a convention from Markdown, but it's also a generic way to show a break in
+thought.  It's easy to argue that it's structure.  What other things are there?
+
+* Timestamp - That's a convention.  It may not always be present.  What if
+  it's in a different part of the document?  It will always make sense in
+  text, but it may be hard to find and parse reliably for a translator, a
+  process that molds the content into the structure.
+
+* Title - This is similar to the timestamp.  It's probably near the same place
+  all the time, most likely separated with whitespace, but maybe not.  Both of
+  these are meta info about the document, not the actual document.
+
+The simplest solution for including meta data would be to provide a meta
+section.  It would need to follow some type of convention, but it wouldn't
+need to be cryptic.
+
+- ---
+title: Something Really Nifty
+author: Jeremy Greer
+date: Sun May 20 19:23:25 EDT 2018
+- ---
+
+You could argue that this is _not_ part of the content.  That is true, I
+guess, but then who else owns this info?  What if you found the content
+floating around the Sargasso Sea?  How would you know who made it and when it
+was made?  To that end, it would probably be a good idea to include a GPG
+signature to verify the content is authentic.
+
+- ---
+
+I've been including a couple other Markdown inspired conventions here out of
+habit.  They're still meaningful in text, even when the reader doesn't know
+Markdown.  Plain text is allowed to have symbols.  We do all the time, like
+punctuation.  Hell, text is just a bunch of symbols.
+
+To clarify, I guess we're looking at building transformers that can do the
+heavy lifting.  The author should not be concerned with conventions for the
+convenience of some future interpreter.  The onus is on the transformer to
+understand the content.
+
+- ---
+
+I really like this idea.  It frees the content from worrying about structure
+conventions.  If there are conventions, the translator should be able to pick
+them up and work with them.  Any that get missed should end up as text and,
+assuming they had meaning in the text-only form, would still have meaning.
+
+- ---
+
+One other aspect I can't account for is accessories that an author would like
+to include.  Initially, I thought of links and images, but those are really
+just references.  A link seems easy enough to find and convert to an anchor
+tag.  How would you handle an image, though?  It's just another url.  The
+translator could fetch it and check the file type or you could guess based on
+the url (check for an extension).  Maybe a contextual guess would work.
+
+Or maybe you don't have to preemptively solve every possible problem before
+trying something out.  I just said above that it was the responsibility of the
+translator to interpret the content.
+
+As a general rule of thumb, the content should always be able to stand alone.
+That's where the ideas and information reside.  All the rest is just different
+ways to display it.
+-----BEGIN PGP SIGNATURE-----
+
+iQEzBAEBCAAdFiEE+HWSq88ULKu5j9Q2m/bgXnuPW8IFAlsCIkIACgkQm/bgXnuP
+W8IUqwf/XRxtsAjtyKnXB4C/GBlX/cT9GCRwFB8mRagnYs9UyeghbB76MvrFUR05
+ofmmdBMs/1o8YWcMgq/FA0zLCSx/sUA5yBFeDL6Ng7G4ii3aEhWWFYi1uf9oJCEM
+L84xqcP/rqMDeA01jZT1ESRAzIuFI4xiD4HTisBWLR1uSHs1kKTYghgXzmo2ZhcM
+QJYq4SyMOs6578W9QRUixRcMd6SVsGISowhNtXv4beYYHhrNjxW5lqKQ+pD1tUAU
+cILZWMQJC++e0QhJpZs1f3YIp9F5qJYio9BkRrqESwqE0L811XYCYkvAzJy5wpn3
+gHmtrd1m/bgRZsITMsVDIu42/Vv9Kg==
+=IVkE
+-----END PGP SIGNATURE-----
