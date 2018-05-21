@@ -15,12 +15,19 @@ with open('content-separation.txt') as content_file:
 # This part will vary greatly based on the content.
 parsed_content = {}
 
-title_match = re.search('^title:\s+([^\s].+)', content, re.MULTILINE)
-title = None
-if title_match:
-    title = title_match.group(1)
-    print(title)
-parsed_content['title'] = title
+meta = {}
+
+def get_meta_value(content, meta_prop):
+    pattern = f'^{meta_prop}:\s+([^\s].+)'
+    match = re.search(pattern, content, re.MULTILINE)
+    if match:
+        return match.group(1)
+
+meta['title'] = get_meta_value(content, 'title')
+meta['author'] = get_meta_value(content, 'author')
+meta['date'] = get_meta_value(content, 'date')
+
+
 
 
 
@@ -32,7 +39,7 @@ parsed_content['without_signature'] = 'xxxxxxx'
 # spit out result
 # This part would vary based on the system content is being processed for.
 result = json.dumps({
-    'title': parsed_content['title'],
+    'meta': meta,
     'content': parsed_content['without_signature'],
     })
 
