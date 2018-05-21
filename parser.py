@@ -23,5 +23,5 @@ def get_content_without_signature(content):
 def get_content_without_meta(content):
     # This assumes the meta is the first thing in the content.
     # If there is no meta, this should not be called (as it will goof up).
-    pattern = '^.+?---\n'
+    pattern = '^(.+?---)?.+?---\n'
     return re.sub(pattern, '', content, 1, flags=re.MULTILINE|re.DOTALL)
