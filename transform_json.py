@@ -19,7 +19,9 @@ meta['title'] = parser.get_meta_value(content_without_signature, 'title')
 meta['author'] = parser.get_meta_value(content_without_signature, 'author')
 meta['date'] = parser.get_meta_value(content_without_signature, 'date')
 
-core_content = parser.get_content_without_meta(content_without_signature)
+content_without_meta = parser.get_content_without_meta(content_without_signature)
+content_stripped = content_without_meta.strip()
+core_content = parser.unwrap(content_stripped)
 
 
 # spit out result

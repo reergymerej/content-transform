@@ -25,3 +25,8 @@ def get_content_without_meta(content):
     # If there is no meta, this should not be called (as it will goof up).
     pattern = '^(.+?---)?.+?---\n'
     return re.sub(pattern, '', content, 1, flags=re.MULTILINE|re.DOTALL)
+
+def unwrap(content):
+    pattern = '([^\n])\n([^\n])'
+    replacement = r'\1 \2'
+    return re.sub(pattern, replacement, content, 0, flags=re.MULTILINE|re.DOTALL)
