@@ -13,13 +13,14 @@ with open('content-separation.txt') as content_file:
 
 # understand parts
 # This part will vary greatly based on the content.
-meta = {}
-meta['title'] = parser.get_meta_value(content, 'title')
-meta['author'] = parser.get_meta_value(content, 'author')
-meta['date'] = parser.get_meta_value(content, 'date')
+content_without_signature = parser.get_content_without_signature(content)
 
-parsed_content = {}
-parsed_content['without_signature'] = parser.get_content_without_signature(content)
+meta = {}
+meta['title'] = parser.get_meta_value(content_without_signature, 'title')
+meta['author'] = parser.get_meta_value(content_without_signature, 'author')
+meta['date'] = parser.get_meta_value(content_without_signature, 'date')
+
+core_content = parser.get_content_without_meta(content_without_signature)
 
 
 
@@ -27,7 +28,7 @@ parsed_content['without_signature'] = parser.get_content_without_signature(conte
 # This part would vary based on the system content is being processed for.
 result = json.dumps({
     'meta': meta,
-    'content': parsed_content['without_signature'],
+    'content': core_content,
     })
 
 
